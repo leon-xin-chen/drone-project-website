@@ -218,6 +218,9 @@ footer .upc{font-family:"Space Grotesk"; font-weight:700; color:#fff; font-size:
 .notebox{border:1.5px dashed var(--amber-line); background:var(--amber-bg); border-radius:12px; padding:14px 16px; margin:14px 0; font-size:14.5px; color:var(--ink-soft)}
 .notebox b{color:var(--amber)}
 
+
+/* ---------- Section collapse ---------- */
+
 .section-header {
   display: flex;
   align-items: center;
@@ -227,22 +230,24 @@ footer .upc{font-family:"Space Grotesk"; font-weight:700; color:#fff; font-size:
 
 .section-header .sec-title {
   margin: 0;
+  flex: 1;
+  min-width: 0;
 }
 
 .collapse-btn {
   flex-shrink: 0;
   width: 34px;
   height: 34px;
+  padding: 0;
 
-  border: 1px solid var(--border);
+  border: 1px solid var(--line-strong);
   border-radius: 8px;
 
-  background: var(--surface);
-  color: var(--text);
+  background: var(--paper-2);
+  color: var(--ink);
 
   font-size: 20px;
   line-height: 1;
-
   cursor: pointer;
 
   display: flex;
@@ -251,10 +256,11 @@ footer .upc{font-family:"Space Grotesk"; font-weight:700; color:#fff; font-size:
 }
 
 .collapse-btn:hover {
-  background: var(--surface-hover);
+  background: var(--sky);
+  border-color: var(--upc-blue);
 }
 
-/* 折叠后，只保留标题行 */
+/* Hide section content when collapsed */
 #sections-root section.collapsed > :not(.section-header) {
-  display: none;
+  display: none !important;
 }
