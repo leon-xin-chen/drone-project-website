@@ -217,3 +217,44 @@ footer .upc{font-family:"Space Grotesk"; font-weight:700; color:#fff; font-size:
 .todo{color:var(--amber); font-weight:600}
 .notebox{border:1.5px dashed var(--amber-line); background:var(--amber-bg); border-radius:12px; padding:14px 16px; margin:14px 0; font-size:14.5px; color:var(--ink-soft)}
 .notebox b{color:var(--amber)}
+
+.section-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.section-header .sec-title {
+  margin: 0;
+}
+
+.collapse-btn {
+  flex-shrink: 0;
+  width: 34px;
+  height: 34px;
+
+  border: 1px solid var(--border);
+  border-radius: 8px;
+
+  background: var(--surface);
+  color: var(--text);
+
+  font-size: 20px;
+  line-height: 1;
+
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.collapse-btn:hover {
+  background: var(--surface-hover);
+}
+
+/* 折叠后，只保留标题行 */
+#sections-root section.collapsed > :not(.section-header) {
+  display: none;
+}
