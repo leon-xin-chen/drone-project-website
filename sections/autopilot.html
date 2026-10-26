@@ -1,0 +1,48 @@
+<hr class="divider">
+
+<!-- ---------- ACTIVITY 5 — AUTOPILOT ---------- -->
+<section id="autopilot">
+  <span class="section-tag">05 · Brains</span>
+  <h2 class="sec-title">The autopilot</h2>
+  <p class="lead">First configuration and calibration of the Pixhawk Orange Cube — the device that turns stick movements into coordinated flight.</p>
+
+  <h4 style="margin:18px 0 6px">Basic concepts</h4>
+  <div class="prose">
+    <p>The autopilot generates the right combination of PWM signals to take off, land, move and rotate. It receives your commands through the radio receiver: the receiver's <code>SBUS OUT</code> connects to the autopilot's <code>RCIN</code> input. From now on a stick no longer drives one motor directly — it asks the autopilot to perform a higher-level manoeuvre, and the autopilot works out what every motor should do to keep the drone stable.</p>
+    <p>To hold stability it fuses data from internal sensors (barometer, accelerometer, gyroscope) and, when available, an external GPS. The flight mode decides which it relies on:</p>
+  </div>
+  <div class="table-scroll"><table class="dt"><thead><tr><th>Channel</th><th>Actuator</th><th>Movement</th></tr></thead><tbody>
+    <tr><td><code>CH1</code></td><td>Ail · Roll</td><td>left / right</td></tr>
+    <tr><td><code>CH2</code></td><td>Ele · Pitch</td><td>forward / back</td></tr>
+    <tr><td><code>CH3</code></td><td>Thr · Throttle</td><td>climb / descend</td></tr>
+    <tr><td><code>CH4</code></td><td>Rud · Yaw</td><td>rotate on its axis</td></tr>
+  </tbody></table></div>
+  <div class="grid-3">
+    <div class="card"><div style="font-family:'Space Grotesk';font-weight:600;color:var(--navy)">AltHold</div><p style="margin:.3rem 0 0;font-size:14.5px;color:var(--ink-soft)">Holds altitude using internal sensors.</p></div>
+    <div class="card"><div style="font-family:'Space Grotesk';font-weight:600;color:var(--navy)">Loiter</div><p style="margin:.3rem 0 0;font-size:14.5px;color:var(--ink-soft)">Holds altitude <em>and</em> XY position using GPS. Needs GPS coverage.</p></div>
+    <div class="card"><div style="font-family:'Space Grotesk';font-weight:600;color:var(--navy)">RTL</div><p style="margin:.3rem 0 0;font-size:14.5px;color:var(--ink-soft)">Return To Launch — flies back to the take-off point. Needs GPS.</p></div>
+  </div>
+  <p style="margin-top:14px">We select among three modes with the 3-position <code>SB</code> switch. The autopilot can also fly a full mission (a sequence of waypoints) sent from a ground station — Mission Planner — which also records telemetry for later analysis.</p>
+
+  <figure class="figure"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="3"/><path d="M9 9h6v6H9z"/></svg></span><span class="meta"><span class="fno">Figure 5.2</span><span class="fcap">Connecting the radio receiver (SBUS OUT) to the autopilot (RCIN).</span><a class="fsrc" href="https://github.com/dronsEETAC/GuiaHexsoonEDU450#actividad-5-el-autopiloto" target="_blank" rel="noopener">View source image ↗</a><span class="ph-tag">Image placeholder</span></span></figure>
+
+  <h4 style="margin:22px 0 6px">Steps</h4>
+  <ol class="steps">
+    <li><h4>Connect receiver, GPS and buzzer to the autopilot</h4><div class="videos"><a class="vcard" href="https://youtu.be/2Jm9zshM1Sc" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Wiring RX, GPS &amp; buzzer</span><span class="s">YouTube</span></span></a></div></li>
+    <li><h4>Install Mission Planner on the laptop</h4><div class="videos"><a class="vcard doc" href="https://ardupilot.org/planner/docs/mission-planner-installation.html" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><path d="M14 2v6h6"/></svg></span><span class="vt"><span class="t">Mission Planner — install guide</span><span class="s">ardupilot.org · docs</span></span></a></div></li>
+    <li><h4>Flash firmware, set frame type &amp; initial parameters</h4><div class="videos"><a class="vcard" href="https://youtu.be/MUiUbNqETsk" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Firmware, frame &amp; initial setup</span><span class="s">YouTube</span></span></a></div></li>
+    <li><h4>Configure parameters, then reboot</h4><p>Immediately after flashing, reset all parameters to default (Figure 5.3) so leftover values from previous users cannot cause unexpected behaviour, then set the parameters below and click <span class="kbd">Write Params</span>. Reboot via <span class="mono">DATA → Actions → PREFLIGHT_REBOOT_SHUTDOWN</span>; if all is well the LEDs light up and the buzzer chirps.</p>
+      <div class="videos"><a class="vcard" href="https://youtu.be/8aF4e0XCMpo" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Configuring parameters</span><span class="s">YouTube</span></span></a></div>
+      <div class="table-scroll"><table class="dt"><thead><tr><th>Parameter</th><th>Value</th><th>Purpose</th></tr></thead><tbody>
+        <tr><td><code>CAN_P1_DRIVER</code></td><td><code>1</code></td><td>Enable CAN driver (GPS)</td></tr>
+        <tr><td><code>GPS_TYPE</code></td><td><code>9</code></td><td>DroneCAN GPS</td></tr>
+        <tr><td><code>NTF_LED_TYPES</code></td><td><code>231</code></td><td>LED notification types</td></tr>
+        <tr><td><code>BRD_SAFETY_DEFLT</code></td><td><code>0</code></td><td>Safety switch default</td></tr>
+        <tr><td><code>BRD_BOOT_DELAY</code></td><td><code>3000</code></td><td>Delay boot 3 s so all peripherals initialise first</td></tr>
+      </tbody></table></div>
+      <figure class="figure"><span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M3 12a9 9 0 109-9" stroke-linecap="round"/><path d="M3 3v5h5" stroke-linecap="round" stroke-linejoin="round"/></svg></span><span class="meta"><span class="fno">Figure 5.3</span><span class="fcap">Resetting all parameters to their default values.</span><a class="fsrc" href="https://github.com/dronsEETAC/GuiaHexsoonEDU450" target="_blank" rel="noopener">View source image ↗</a><span class="ph-tag">Image placeholder</span></span></figure></li>
+    <li><h4>Calibrate accelerometer &amp; compass</h4><div class="videos"><a class="vcard" href="https://youtu.be/slux0oX2Qig" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Accelerometer &amp; compass</span><span class="s">YouTube</span></span></a></div></li>
+    <li><h4>Calibrate the radio</h4><p>While calibrating you will see the min/max PWM each actuator produces. Note the <strong>throttle</strong> values — they should be close to <code>982</code> and <code>2006</code>; you will need them later for the failsafe.</p><div class="videos"><a class="vcard" href="https://youtu.be/0Ii1I8D2gro" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Radio calibration</span><span class="s">YouTube</span></span></a></div></li>
+    <li><h4>Set flight modes &amp; RTL altitude</h4><p>Select <code>AltHold</code>, <code>Loiter</code> and <code>RTL</code>, and set the RTL altitude (a good choice at the DroneLab is <strong>7 m</strong>) via the full parameter list (Figure 5.4).</p><div class="videos"><a class="vcard" href="https://youtu.be/PNEuuCZnhX0" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Flight modes &amp; RTL altitude</span><span class="s">YouTube</span></span></a></div></li>
+  </ol>
+</section>

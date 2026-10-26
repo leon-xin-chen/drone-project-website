@@ -1,0 +1,48 @@
+<hr class="divider">
+
+<!-- ---------- ACTIVITY 4 — RADIO CONTROL ---------- -->
+<section id="radio">
+  <span class="section-tag">04 · Radio</span>
+  <h2 class="sec-title">Radio control</h2>
+  <p class="lead">Configure the transmitter that will command the motors and the servo, and verify every channel works.</p>
+
+  <h4 style="margin:18px 0 6px">Basic concepts</h4>
+  <div class="prose">
+    <p>The transmitter can send signals over up to 24 channels, multiplexed together. Each channel is driven by one actuator on the transmitter — a stick, a switch (SA, SB…) or a knob (S1, S2). The receiver separates the multiplexed signal back into individual channels and outputs each as a <strong>PWM</strong> signal (up to 8 channels on our receiver). The width of each PWM pulse sets how fast a motor spins or what position a servo takes — this is the basis of all radio control.</p>
+  </div>
+  <div class="videos">
+    <a class="vcard" href="https://www.youtube.com/watch?v=LyPtzv0y5DE" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">How radio control &amp; PWM work</span><span class="s">YouTube · concepts</span></span></a>
+  </div>
+
+  <ol class="steps">
+    <li><h4>Charge the transmitter battery</h4><p>Connect the transmitter to a computer with the supplied USB cable. The indicator light turns green while charging and switches off when fully charged. <span class="ph-tag">Figure 4.4</span></p></li>
+    <li><h4>Insert the MicroSD card</h4><p>The card is not strictly required, but it greatly expands storage for sounds and music that improve the user experience. <span class="ph-tag">Figure 4.5</span></p>
+      <div class="videos"><a class="vcard" href="https://www.youtube.com/watch?v=qYo99q0HZMg" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">MicroSD &amp; sounds</span><span class="s">YouTube</span></span></a></div></li>
+    <li><h4>Calibrate the transmitter</h4><p>Before configuring it for the drone, calibrate the sticks and switches.</p>
+      <div class="videos"><a class="vcard" href="https://www.youtube.com/watch?v=plLWhwmY-rM" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Transmitter calibration</span><span class="s">YouTube</span></span></a></div></li>
+    <li><h4>Create the model</h4><p>Build a model that maps each actuator to a channel. You can use the OpenTX Companion software (free, from open-tx.org) or create the model directly on the transmitter. First put the radio into USB mode, then create the model.</p>
+      <div class="videos">
+        <a class="vcard" href="https://www.youtube.com/watch?v=Z0F_QMYElzo" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Put the radio in USB mode</span><span class="s">YouTube</span></span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=eyahLlB3fH0" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Create the model in OpenTX</span><span class="s">YouTube</span></span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=ZFuazchCv4o" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Create the model on the transmitter</span><span class="s">YouTube</span></span></a>
+      </div>
+      <div class="callout warn"><div class="ct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9L2 18a2 2 0 001.7 3h16.6A2 2 0 0022 18L13.7 3.9a2 2 0 00-3.4 0z" stroke-linecap="round" stroke-linejoin="round"/></svg> Check the stick mode</div><p style="margin:0">The video does not show this, but verify the stick mode: the US stick configuration differs from the European one. Confirm it before continuing (Figure 4.6).</p></div>
+      <p>Assign the stick axes to channels as follows:</p>
+      <div class="table-scroll"><table class="dt"><thead><tr><th>Operation</th><th>Stick movement</th><th>Channel</th></tr></thead><tbody>
+        <tr><td><code>Thr</code> — Throttle</td><td>Left stick, vertical — climb / descend</td><td><code>CH3</code></td></tr>
+        <tr><td><code>Ail</code> — Roll</td><td>Right stick, horizontal — move right / left</td><td><code>CH1</code></td></tr>
+        <tr><td><code>Ele</code> — Pitch</td><td>Right stick, vertical — move forward / back</td><td><code>CH2</code></td></tr>
+        <tr><td><code>Rud</code> — Yaw</td><td>Left stick, horizontal — rotate on its axis</td><td><code>CH4</code></td></tr>
+      </tbody></table></div>
+      <p>Also assign switch <code>SB</code> (3 positions) to <code>CH5</code>, switch <code>SF</code> (2 positions) to <code>CH7</code>, and — though the video omits it — switch <code>SC</code> (3 positions) to <code>CH6</code>. Simulate the model to verify it, then save it to the transmitter.</p></li>
+    <li><h4>Bind transmitter to receiver</h4><p>The binding procedure depends on the receiver protocol — ACCESS or ACCST.</p>
+      <div class="videos">
+        <a class="vcard" href="https://www.youtube.com/watch?v=07qpdApsCAI" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Bind — ACCESS protocol</span><span class="s">YouTube</span></span></a>
+        <a class="vcard" href="https://www.youtube.com/watch?v=k5EPJiipXcc" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Bind — ACCST protocol</span><span class="s">YouTube</span></span></a>
+      </div></li>
+    <li><h4>Test the channels</h4><p>Connect each motor and the servo to different channels and confirm everything responds correctly.</p>
+      <div class="videos"><a class="vcard" href="https://www.youtube.com/watch?v=1nugfbtLK9Q" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Testing motors &amp; servo per channel</span><span class="s">YouTube</span></span></a></div>
+      <div class="callout warn"><div class="ct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9L2 18a2 2 0 001.7 3h16.6A2 2 0 0022 18L13.7 3.9a2 2 0 00-3.4 0z" stroke-linecap="round" stroke-linejoin="round"/></svg> If a motor spins the wrong way</div><p style="margin:0">During the test you may find a motor turning the wrong direction (the video shows exactly this). Fix it by swapping any two of the three ESC-to-motor wires. It is a tedious fix — you must unscrew the arm and disconnect the LED to reach the connections — but it has to be right before flight.</p></div></li>
+    <li><h4>Invert the Pitch channel</h4><p>By default, pushing the right stick forward makes the drone go backwards. If that feels wrong, invert the pitch channel directly on the transmitter. <span class="ph-tag">Figure 4.7</span></p></li>
+  </ol>
+</section>

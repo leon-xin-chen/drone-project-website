@@ -1,0 +1,18 @@
+[
+  { "id": "overview",      "file": "overview.html",      "num": "00", "label": "Project overview",                 "group": "Start here" },
+  { "id": "basics",        "file": "basics.html",        "num": "01", "label": "Drone basics &amp; components",   "group": "Build sequence" },
+  { "id": "unboxing",      "file": "unboxing.html",      "num": "02", "label": "Unboxing",                        "group": "Build sequence" },
+  { "id": "frame1",        "file": "frame1.html",        "num": "03", "label": "Frame assembly · part 1",         "group": "Build sequence" },
+  { "id": "radio",         "file": "radio.html",         "num": "04", "label": "Radio control",                   "group": "Build sequence" },
+  { "id": "autopilot",     "file": "autopilot.html",     "num": "05", "label": "The autopilot",                   "group": "Build sequence" },
+  { "id": "frame2",        "file": "frame2.html",        "num": "06", "label": "Frame assembly · part 2",         "group": "Build sequence" },
+  { "id": "calibrations",  "file": "calibrations.html",  "num": "07", "label": "More calibrations",                "group": "Build sequence" },
+  { "id": "simulator",     "file": "simulator.html",     "num": "08", "label": "Simulator, geofences &amp; missions", "group": "Build sequence" },
+  { "id": "flight",        "file": "flight.html",        "num": "09", "label": "Flight tests",                    "group": "At the DroneLab" },
+  { "id": "logs",          "file": "logs.html",          "num": "10", "label": "Log analysis",                    "group": "At the DroneLab" },
+  { "id": "difficulties",  "file": "difficulties.html",  "num": "!",  "label": "Difficulties &amp; solutions",     "group": "Project journal" },
+  { "id": "reflections",   "file": "reflections.html",   "num": "~",  "label": "Team reflections",                 "group": "Project journal" },
+  { "id": "phase2",        "file": "phase2.html",        "num": "»",  "label": "Looking ahead · Phase 2",          "group": "Project journal" },
+  { "id": "updates",       "file": "updates.html",       "num": "#",  "label": "Updates",                          "group": "Project journal" },
+  { "id": "references",    "file": "references.html",    "num": "§",  "label": "References",                       "group": "Project journal" }
+]

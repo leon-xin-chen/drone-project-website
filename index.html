@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Hexsoon EDU 450 · Drone Build Guide — UPC Master in UAS</title>
+<meta name="description" content="A step-by-step guide to assembling, configuring and flight-testing a Hexsoon EDU 450 quadcopter. Transversal Project, Phase 1 — Master in Applications and Technologies for Unmanned Aircraft Systems, UPC · BarcelonaTech.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=IBM+Plex+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<!-- ============ TOP BAR ============ -->
+<header class="topbar">
+  <button class="menu-btn" id="menuBtn" aria-label="Open navigation" aria-expanded="false">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"/></svg>
+  </button>
+  <div class="wm">
+    <span class="upc">UPC</span>
+    <span class="bt">BarcelonaTech · Master in UAS</span>
+  </div>
+  <div class="prog-wrap">
+    <span>Build progress</span>
+    <div class="prog-track"><div class="prog-bar" id="progBar"></div></div>
+  </div>
+  <button class="theme-btn" id="themeBtn" aria-label="Toggle dark mode">
+    <svg id="sunIco" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4.2"/><path d="M12 2v2.5M12 19.5V22M2 12h2.5M19.5 12H22M4.9 4.9l1.8 1.8M17.3 17.3l1.8 1.8M19.1 4.9l-1.8 1.8M6.7 17.3l-1.8 1.8" stroke-linecap="round"/></svg>
+  </button>
+</header>
+
+<div class="scrim" id="scrim"></div>
+
+<div class="shell">
+  <!-- ============ SIDEBAR ============ -->
+  <!-- Nav entries are generated from sections.json by js/main.js -->
+  <nav class="sidebar" id="sidebar" aria-label="Guide contents">
+    <div id="navSections"></div>
+  </nav>
+
+  <!-- ============ MAIN ============ -->
+  <main>
+
+  <!-- ---------- HERO ---------- -->
+  <section class="hero" id="top">
+    <div class="hero-grid">
+      <div>
+        <div class="eyebrow">
+          <span class="pill blue">Transversal Project · Phase 1</span>
+          <span class="pill">Hexsoon EDU 450</span>
+          <span class="pill">ArduPilot · Orange Cube</span>
+        </div>
+        <h1>Building a <span class="mk">quadcopter</span>, from kit to first flight</h1>
+        <p class="sub">A complete, step-by-step guide to assembling, wiring, configuring and flight-testing a Hexsoon EDU 450 drone — written by our team for the Master in Applications and Technologies for Unmanned Aircraft Systems at UPC · BarcelonaTech.</p>
+        <div class="hero-cta">
+          <a class="btn btn-primary" href="#basics">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M13 6l6 6-6 6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Start the build
+          </a>
+          <a class="btn btn-ghost" href="#overview">How this guide works</a>
+        </div>
+        <div class="spec-row">
+          <div class="spec"><div class="k">Airframe</div><div class="v">450 mm Quad-X</div></div>
+          <div class="spec"><div class="k">Autopilot</div><div class="v">Orange Cube</div></div>
+          <div class="spec"><div class="k">Activities</div><div class="v">8 + flight</div></div>
+          <div class="spec"><div class="k">Ground station</div><div class="v">Mission Planner</div></div>
+        </div>
+      </div>
+
+      <!-- Original SVG schematic: Quad-X top view with motor numbering & spin direction -->
+      <figure class="schematic">
+        <svg viewBox="0 0 440 400" role="img" aria-label="Top-view schematic of the Quad-X frame showing motor numbers, mount colours and rotation directions">
+          <defs>
+            <marker id="ah" markerWidth="7" markerHeight="7" refX="3.5" refY="3.5" orient="auto"><path d="M0 0L7 3.5L0 7Z" fill="var(--upc-blue)"/></marker>
+          </defs>
+          <!-- front label -->
+          <text x="220" y="24" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" fill="var(--ink-faint)" letter-spacing="3">▲ FRONT</text>
+          <!-- arms -->
+          <g stroke-linecap="round">
+            <line x1="220" y1="210" x2="110" y2="110" stroke="#e08a2a" stroke-width="13"/>
+            <line x1="220" y1="210" x2="330" y2="110" stroke="#e08a2a" stroke-width="13"/>
+            <line x1="220" y1="210" x2="110" y2="310" stroke="#39485a" stroke-width="13"/>
+            <line x1="220" y1="210" x2="330" y2="310" stroke="#39485a" stroke-width="13"/>
+          </g>
+          <!-- central body = autopilot -->
+          <rect x="188" y="178" width="64" height="64" rx="10" fill="var(--navy)"/>
+          <rect x="198" y="188" width="44" height="44" rx="6" fill="#e08a2a"/>
+          <text x="220" y="214" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="9" fill="#fff">CUBE</text>
+          <!-- motors: each a ring with spin arrow -->
+          <!-- M1 front-right CCW white-dot -->
+          <g>
+            <circle cx="330" cy="110" r="34" fill="var(--paper)" stroke="var(--line-strong)" stroke-width="2"/>
+            <path d="M314.4 94.4 A22 22 0 1 0 345.6 94.4" fill="none" stroke="var(--upc-blue)" stroke-width="2.6" marker-end="url(#ah)"/>
+            <circle cx="330" cy="88" r="4.5" fill="#fff" stroke="var(--navy)" stroke-width="1.5"/>
+            <text x="330" y="117" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="20" fill="var(--navy)">1</text>
+          </g>
+          <!-- M3 front-left CW -->
+          <g>
+            <circle cx="110" cy="110" r="34" fill="var(--paper)" stroke="var(--line-strong)" stroke-width="2"/>
+            <path d="M125.6 94.4 A22 22 0 1 1 94.4 94.4" fill="none" stroke="var(--upc-blue)" stroke-width="2.6" marker-end="url(#ah)"/>
+            <text x="110" y="117" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="20" fill="var(--navy)">3</text>
+          </g>
+          <!-- M2 rear-left CCW white-dot -->
+          <g>
+            <circle cx="110" cy="310" r="34" fill="var(--paper)" stroke="var(--line-strong)" stroke-width="2"/>
+            <path d="M94.4 294.4 A22 22 0 1 0 125.6 294.4" fill="none" stroke="var(--upc-blue)" stroke-width="2.6" marker-end="url(#ah)"/>
+            <circle cx="110" cy="288" r="4.5" fill="#fff" stroke="var(--navy)" stroke-width="1.5"/>
+            <text x="110" y="317" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="20" fill="var(--navy)">2</text>
+          </g>
+          <!-- M4 rear-right CW -->
+          <g>
+            <circle cx="330" cy="310" r="34" fill="var(--paper)" stroke="var(--line-strong)" stroke-width="2"/>
+            <path d="M345.6 294.4 A22 22 0 1 1 314.4 294.4" fill="none" stroke="var(--upc-blue)" stroke-width="2.6" marker-end="url(#ah)"/>
+            <text x="330" y="317" text-anchor="middle" font-family="Space Grotesk, sans-serif" font-weight="700" font-size="20" fill="var(--navy)">4</text>
+          </g>
+          <!-- legend -->
+          <g font-family="IBM Plex Mono, monospace" font-size="11" fill="var(--ink-soft)">
+            <circle cx="150" cy="378" r="5" fill="#e08a2a"/><text x="162" y="382">front · orange</text>
+            <circle cx="268" cy="378" r="5" fill="#39485a"/><text x="280" y="382">rear · black</text>
+          </g>
+        </svg>
+        <figcaption>Quad-X layout — motors 1 &amp; 2 spin CCW (white dot), 3 &amp; 4 spin CW. Front arms orange, rear arms black.</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <!-- ============ CONTENT SECTIONS ============ -->
+  <!-- Populated at runtime from sections/*.html, in the order given by sections.json -->
+  <div id="sections-root"></div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="fgrid">
+    <div style="max-width:40ch">
+      <div class="upc">UPC · BarcelonaTech</div>
+      <p style="margin:.6rem 0 0">Master in Applications and Technologies for Unmanned Aircraft Systems (Drones)<br>Transversal Project — Phase 1</p>
+    </div>
+    <div>
+      <div style="color:#fff;font-family:'Space Grotesk';font-weight:600;margin-bottom:8px">On this site</div>
+      <div><a href="#overview">Overview</a> · <a href="#basics">Build sequence</a> · <a href="#difficulties">Difficulties</a> · <a href="#updates">Updates</a> · <a href="#references">References</a></div>
+    </div>
+    <div>
+      <div style="color:#fff;font-family:'Space Grotesk';font-weight:600;margin-bottom:8px">Project</div>
+      <div><a href="https://github.com/dronsEETAC/GuiaHexsoonEDU450" target="_blank" rel="noopener">GitHub repository ↗</a><br><a href="https://www.linkedin.com/company/med-transversal-project/" target="_blank" rel="noopener">LinkedIn ↗</a></div>
+    </div>
+  </div>
+  <p style="max-width:var(--maxw);margin:28px auto 0;color:#6f9ac0;font-size:12.5px">Built by our team for the Transversal Project. Hexsoon EDU 450 · Orange Cube · ArduPilot · Mission Planner.</p>
+</footer>
+
+<script src="js/main.js"></script>
+</body>
+</html>

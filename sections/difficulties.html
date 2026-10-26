@@ -1,0 +1,72 @@
+<hr class="divider">
+
+<!-- ---------- DIFFICULTIES ---------- -->
+<section id="difficulties">
+  <span class="section-tag">! · Lessons</span>
+  <h2 class="sec-title">Difficulties &amp; solutions</h2>
+  <p class="lead">The traps that cost us (and other teams) the most time — and exactly how we got past them.</p>
+
+  <div class="grid-2" style="margin-top:6px">
+    <div class="card"><h4 style="font-size:17px">A motor spun the wrong way</h4><p style="font-size:14.5px;color:var(--ink-soft);margin:.5rem 0 0">Found during the channel test. <b>Fix:</b> swap any two of the three ESC-to-motor wires — which meant unscrewing the arm and disconnecting the LED.</p></div>
+    <div class="card"><h4 style="font-size:17px">Pitch felt inverted</h4><p style="font-size:14.5px;color:var(--ink-soft);margin:.5rem 0 0">Right stick forward → drone backwards. <b>Fix:</b> invert the pitch channel on the transmitter.</p></div>
+    <div class="card"><h4 style="font-size:17px">Odd autopilot behaviour after flashing</h4><p style="font-size:14.5px;color:var(--ink-soft);margin:.5rem 0 0">Leftover parameters from previous users. <b>Fix:</b> reset all parameters to default right after flashing firmware, then re-apply ours.</p></div>
+    <div class="card"><h4 style="font-size:17px">US vs EU stick mode</h4><p style="font-size:14.5px;color:var(--ink-soft);margin:.5rem 0 0">Default stick mapping differed from what we expected. <b>Fix:</b> verify and set the stick mode before building the model (Fig 4.6).</p></div>
+    <div class="card"><h4 style="font-size:17px">Telemetry link slower than USB</h4><p style="font-size:14.5px;color:var(--ink-soft);margin:.5rem 0 0">Expected behaviour, not a fault. <b>Approach:</b> use USB for heavy config, telemetry radio for in-field checks and flight.</p></div>
+  </div>
+  <div style="margin-top:18px">
+  <div class="notebox" style="margin-bottom:12px">
+    <b>Our own difficulties</b>
+    <span style="color:var(--ink-soft);font-size:14px">
+      Problems we encountered during our own build and how we addressed them.
+    </span>
+  </div>
+
+  <div class="grid-2">
+
+    <!-- Motor / ESC -->
+    <div class="card">
+      <h4 style="font-size:17px;margin:0 0 8px">
+        Motor/ESC inconsistency
+      </h4>
+
+      <p style="font-size:14.5px;color:var(--ink-soft);margin:0 0 10px">
+        During individual motor testing, one motor produced a noticeably
+        different sound from the other three and required a higher minimum
+        throttle threshold to start normally.
+      </p>
+
+      <p style="font-size:14.5px;color:var(--ink-soft);margin:0 0 10px">
+        After replacing the motor, the same behaviour appeared again,
+        so we currently suspect the <b>ESC</b> rather than the motor itself.
+      </p>
+
+      <div style="font-size:14px;color:var(--ink-soft);
+                  padding-top:8px;border-top:1px solid rgba(255,255,255,.12)">
+        <b>Observation:</b>
+        The difference did not appear to affect normal flight performance.
+        The flight controller may be compensating for small differences in
+        motor output, but this requires further investigation.
+      </div>
+    </div>
+
+    <!-- Missing parameters -->
+    <div class="card">
+      <h4 style="font-size:17px;margin:0 0 8px">
+        Missing parameters when loading the param file
+      </h4>
+
+      <p style="font-size:14.5px;color:var(--ink-soft);margin:0 0 10px">
+        When loading the recommended parameter file, Mission Planner
+        reported that some parameters were missing or could not be recognized.
+      </p>
+
+      <div style="font-size:14px;color:var(--ink-soft);
+                  padding-top:8px;border-top:1px solid rgba(255,255,255,.12)">
+        <b>Fix:</b>
+        We checked the latest parameter names and their corresponding units,
+        updated the configuration file, and loaded it again.
+      </div>
+    </div>
+
+  </div>
+</div>

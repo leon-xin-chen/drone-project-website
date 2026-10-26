@@ -1,0 +1,26 @@
+<hr class="divider">
+
+<!-- ---------- ACTIVITY 7 — MORE CALIBRATIONS ---------- -->
+<section id="calibrations">
+  <span class="section-tag">07 · Fine-tuning</span>
+  <h2 class="sec-title">More calibrations</h2>
+  <p class="lead">Calibrate the ESCs, test the motors, configure the failsafe and battery monitor, and load the recommended parameters — leaving the platform ready for its first flight.</p>
+  <p style="margin-bottom:4px">Most steps need the autopilot connected to Mission Planner. Since the drone stays on the ground here, either connection works — but we use the <strong>telemetry radio</strong> to confirm it works end-to-end (expect it to be slower than USB).</p>
+
+  <div class="table-scroll"><table class="dt"><thead><tr><th>#</th><th>Step</th><th>Video</th></tr></thead><tbody>
+    <tr><td>1</td><td>Configure the telemetry radio</td><td><a href="https://youtu.be/6xqEbOzUQSo" target="_blank" rel="noopener">Watch ↗</a></td></tr>
+    <tr><td>2</td><td>Calibrate the ESCs</td><td><a href="https://youtu.be/wO8QJQpC3IM" target="_blank" rel="noopener">Watch ↗</a></td></tr>
+    <tr><td>3</td><td>Servo, FailSafe and Arm/Disarm <em>(see Note 1)</em></td><td><a href="https://youtu.be/D1ne2W3uEEE" target="_blank" rel="noopener">Watch ↗</a></td></tr>
+    <tr><td>4</td><td>Configure the battery monitor</td><td><a href="https://youtu.be/DGpoN0KlAYY" target="_blank" rel="noopener">Watch ↗</a></td></tr>
+    <tr><td>5</td><td>Motor test</td><td><a href="https://youtu.be/w6N368HIncc" target="_blank" rel="noopener">Watch ↗</a></td></tr>
+    <tr><td>6</td><td>Load the recommended parameters <em>(see Note 2)</em></td><td><a href="https://youtu.be/9pilQ3uT8mA" target="_blank" rel="noopener">Watch ↗</a></td></tr>
+    <tr><td>7</td><td>Final checks</td><td><a href="https://youtu.be/Af_ygwTi_s0" target="_blank" rel="noopener">Watch ↗</a></td></tr>
+  </tbody></table></div>
+
+  <div class="callout"><div class="ct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16v-5M12 8h.01" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg> Note 1 — FailSafe</div><p style="margin:0">FailSafe tells the autopilot what to do if the system fails. For now we set the radio-loss case. <code>FS PWM</code> is the throttle value below which the autopilot assumes the radio is lost — it must be <em>below</em> the minimum throttle PWM you noted during radio calibration (e.g. <code>975</code>, which is below <code>982</code>). A good action on radio loss is <strong>Return To Launch (RTL)</strong>.</p></div>
+
+  <div class="callout"><div class="ct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 16v-5M12 8h.01" stroke-linecap="round"/><circle cx="12" cy="12" r="9"/></svg> Note 2 — Loading recommended parameters</div><p style="margin:0">If Mission Planner cannot find the recommended parameter file for the Hexsoon EDU 450, download <code>Hexsoon-edu450.param</code> from our repository and load it with the green <span class="kbd">Load from file</span> button (top-left). Also, for early flights, reduce the manual climb/descent speed: set <code>PILOT_SPEED_UP</code> from the default <code>250 cm/s</code> to around <code>100 cm/s</code> (Figure 7.1).</p></div>
+
+  <div class="callout warn"><div class="ct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9L2 18a2 2 0 001.7 3h16.6A2 2 0 0022 18L13.7 3.9a2 2 0 00-3.4 0z" stroke-linecap="round" stroke-linejoin="round"/></svg> Watch the battery</div><p style="margin:0">Check the charge often (Figure 7.2). Each cell should read at least <strong>3.7 V</strong> — if not, it is time to recharge before doing anything else.</p></div>
+  <p><a href="https://github.com/dronsEETAC/GuiaHexsoonEDU450/blob/main/Hexsoon-edu450.param" target="_blank" rel="noopener">Download the recommended parameter file (Hexsoon-edu450.param) ↗</a></p>
+</section>

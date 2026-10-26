@@ -1,0 +1,20 @@
+<hr class="divider">
+
+<!-- ---------- ACTIVITY 6 — FRAME PART 2 ---------- -->
+<section id="frame2">
+  <span class="section-tag">06 · Integration</span>
+  <h2 class="sec-title">Frame assembly — part 2</h2>
+  <p class="lead">Mount the autopilot, connect the motors, and add the GPS, telemetry radio and buzzer. After this, the airframe is complete (propellers go on only at flight time).</p>
+  <div class="videos"><a class="vcard" href="https://www.youtube.com/watch?v=mwJNhkAG2bE" target="_blank" rel="noopener"><span class="play"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"/></svg></span><span class="vt"><span class="t">Helpful walkthrough for this activity</span><span class="s">YouTube · reference</span></span></a></div>
+
+  <ol class="steps">
+    <li><h4>Fix the autopilot to the top plate</h4><div class="callout warn"><div class="ct"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 9v4M12 17h.01M10.3 3.9L2 18a2 2 0 001.7 3h16.6A2 2 0 0022 18L13.7 3.9a2 2 0 00-3.4 0z" stroke-linecap="round" stroke-linejoin="round"/></svg> Centre it precisely</div><p style="margin:0">It is crucial that the autopilot is perfectly centred: the geometric centre of the orange cube must coincide with the geometric centre of the plate. An off-centre IMU degrades flight stability. (See the video at ~4:30.)</p></div></li>
+    <li><h4>Connect the receiver &amp; power the autopilot</h4><p>The <code>SBUS OUT → RCIN</code> cable both carries commands and powers the receiver. Mind the polarity of the three pins. Power the autopilot itself through the <code>POWER2</code> cable from the distribution board. <span class="ph-tag">Figure 6.4</span></p></li>
+    <li><h4>Connect the motors to the autopilot</h4><p>Motors are numbered as in Figure 6.5 (left); connect each to its matching <code>MAIN OUT</code> output (right). The front motors' cable extensions can help, though a direct connection keeps the wiring tidier. <span class="ph-tag">Figure 6.5</span></p></li>
+    <li><h4>Install the GPS receiver</h4><p>Mount it at the front of the top plate. Route the black cable inside the support. Connect the red/black connector to <code>CAN1</code>; also connecting the white/green connector to <code>CAN2</code> is recommended. <span class="ph-tag">Figure 6.6</span></p></li>
+    <li><h4>Install the telemetry radio</h4><p>One transceiver plugs into the laptop's USB; the other connects to the autopilot's <code>Telem1</code> input. This link lets Mission Planner talk to the drone in flight, which the USB cable cannot. <span class="ph-tag">Figure 6.7</span></p></li>
+    <li><h4>Install the buzzer</h4><p>The buzzer connects to the autopilot's <code>USB</code> input. <span class="ph-tag">Figure 6.8</span></p></li>
+    <li><h4>Add Velcro &amp; straps for the battery</h4><p>Fit the hook-and-loop strips and straps that will hold the battery, with extra Velcro as backup. <span class="ph-tag">Figure 6.9</span></p></li>
+    <li><h4>Secure everything</h4><p>Fasten the receiver and telemetry radio with Velcro and zip ties so nothing shifts in flight. <span class="ph-tag">Figure 6.10</span></p></li>
+  </ol>
+</section>
