@@ -231,6 +231,7 @@
 
     });
 
+    
 
     window.addEventListener(
       'scroll',
